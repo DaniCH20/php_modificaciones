@@ -1,0 +1,10 @@
+services:
+  web:
+
+    build: ./miweb
+    
+    ports:
+      - "7000:7000"
+    volumes:
+      - .:/app
+    

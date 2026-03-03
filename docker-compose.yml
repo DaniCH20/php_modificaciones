@@ -1,0 +1,8 @@
+services:
+  php_modificaciones:
+    container_name: php_modificaciones
+    image: php:8.2-apache
+    ports:
+      - "8080:80"
+    volumes:
+      - ./web:/var/www/html
