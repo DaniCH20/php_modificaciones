@@ -1,0 +1,32 @@
+services:
+  php_ejercicios:
+    container_name: php_ejercicios
+    build: .
+    ports:
+      - "9000:80"
+    volumes:
+      - ./web:/var/www/html
+    environment:
+      DB_HOST: "db"
+      DB_USER: "root"
+      DB_PASS: "secret"
+      DB_NAME: "zoo_db"
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: zoo_db
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "9001:80"
+    environment:
+      PMA_HOST: db
+
+# Volumen para que la base de datos sea persistente
+volumes:
+  db_data:
